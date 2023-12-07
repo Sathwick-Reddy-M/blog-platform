@@ -1,10 +1,20 @@
 export async function getBlogPosts() {
   try {
-    const response = await fetch("http://localhost:8080/");
+    const response = await fetch("http://localhost:8080/blogs");
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching blog posts:", error);
-    throw error; // Re-throw the error for the calling code to handle if needed
+    console.log(error);
+  }
+}
+
+export async function getBlogPost(id) {
+  try {
+    const response = await fetch(`http://localhost:8080/blog/${id}`);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 }
