@@ -12,13 +12,12 @@ import {
 } from "./blog.styles";
 
 export function Blog() {
-  const { id } = useParams();
+  const { blogId } = useParams();
   const [blog, setBlog] = useState({});
   useEffect(() => {
-    console.log(id);
     async function getBlogPostAsyncWrapper() {
       try {
-        const resBlog = await getBlogPost(id);
+        const resBlog = await getBlogPost(blogId);
         setBlog(resBlog);
       } catch (error) {
         console.log(error);

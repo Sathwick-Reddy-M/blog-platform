@@ -8,20 +8,31 @@ export async function getBlogPosts() {
   }
 }
 
-export async function getBlogPost(id) {
+export async function getBlogPost(blogId) {
   try {
-    const response = await fetch(`http://localhost:8080/blog/${id}`);
+    const response = await fetch(`http://localhost:8080/blog/${blogId}`);
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function getAuthorDetails(id) {
+export async function getAuthorDetails(authorId) {
   try {
-    const response = await fetch(`http://localhost:8080/author/${id}`);
+    const response = await fetch(`http://localhost:8080/author/${authorId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getAuthorBlogs(authorId) {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/authorBlogs/${authorId}`
+    );
     const data = await response.json();
     return data;
   } catch (error) {

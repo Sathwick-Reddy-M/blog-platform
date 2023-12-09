@@ -1,16 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { getBlogPosts } from "../../utils/requests";
-import DOMPurify from "dompurify";
-import { Blog } from "../blog/blog.component";
-import {
-  BlogContainer,
-  BlogPost,
-  BlogTitle,
-  BlogAuthor,
-  BlogContent,
-  BlogDate,
-} from "./home.styles";
+import { BlogCard } from "../blog-card/blog-card.component.jsx";
 
 export function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -28,23 +18,9 @@ export function Home() {
   }, []);
 
   return (
-    <BlogContainer>
+    <div>
       <h1>Home</h1>
-      {blogs.map((blog, index) => (
-        <Link to={`/blog/${blog.id}`} key={index}>
-          <BlogPost>
-            <BlogTitle>{blog.name}</BlogTitle>
-            <BlogAuthor>Author: {blog.author}</BlogAuthor>
-            <BlogContent
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(blog.contentHTML),
-              }}
-            />
-            <BlogDate>Published: {blog.datePublished}</BlogDate>
-            <BlogDate>Updated: {blog.dateUpdated}</BlogDate>
-          </BlogPost>
-        </Link>
-      ))}
-    </BlogContainer>
+      <BlogCard blogs={blogs} />
+    </div>
   );
 }
