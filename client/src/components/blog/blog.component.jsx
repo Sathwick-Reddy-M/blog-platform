@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getBlogPost } from "../../utils/requests";
+import { getBlogPost } from "../../utils/requests/requests.utils";
 import DOMPurify from "dompurify";
 import { useParams } from "react-router-dom";
 import {

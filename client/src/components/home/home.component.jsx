@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getBlogPosts } from "../../utils/requests";
+import { getBlogPosts } from "../../utils/requests/requests.utils";
 import { BlogCard } from "../blog-card/blog-card.component.jsx";
 
 export function Home() {

@@ -39,3 +39,19 @@ export async function getAuthorBlogs(authorId) {
     console.log(error);
   }
 }
+
+export async function createUser(userObj) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userObj),
+  };
+  try {
+    const response = await fetch(`http://localhost:8080/users`, options);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const { BLOGS } = require("../src/models/blogs.model");
-const { AUTHORS } = require("../src/models/authors.model");
+const { BLOGS } = require("./models/blogs.model");
+const { AUTHORS } = require("./models/authors.model");
+const { USERS } = require("./models/users.model");
 
 const app = express();
 
@@ -27,6 +28,12 @@ app.get("/authorBlogs/:authorId", (req, res) => {
   const authorId = req.params.authorId;
   const blogs = BLOGS.filter((blog) => `${blog.authorId}` === authorId);
   res.json(blogs);
+});
+
+app.post("/users", (req, res) => {
+  const userData = req.body;
+  USERS.push(userData);
+  res.send("Update Successful");
 });
 
 module.exports = app;

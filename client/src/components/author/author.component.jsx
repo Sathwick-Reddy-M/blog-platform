@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BlogCard } from "../blog-card/blog-card.component";
-import { getAuthorDetails, getAuthorBlogs } from "../../utils/requests";
+import {
+  getAuthorDetails,
+  getAuthorBlogs,
+} from "../../utils/requests/requests.utils";
 
 export function Author() {
   const { authorId } = useParams();

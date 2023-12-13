@@ -13,19 +13,21 @@ export function BlogCard({ blogs }) {
   return (
     <BlogContainer>
       {blogs.map((blog, index) => (
-        <Link to={`/blog/${blog.id}`} key={index}>
-          <BlogPost>
+        <BlogPost key={index}>
+          <Link to={`/blog/${blog.id}`}>
             <BlogTitle>{blog.name}</BlogTitle>
+          </Link>
+          <Link to={`/author/${blog.authorId}`}>
             <BlogAuthor>Author: {blog.author}</BlogAuthor>
-            <BlogContent
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(blog.contentHTML),
-              }}
-            />
-            <BlogDate>Published: {blog.datePublished}</BlogDate>
-            <BlogDate>Updated: {blog.dateUpdated}</BlogDate>
-          </BlogPost>
-        </Link>
+          </Link>
+          <BlogContent
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(blog.contentHTML),
+            }}
+          />
+          <BlogDate>Published: {blog.datePublished}</BlogDate>
+          <BlogDate>Updated: {blog.dateUpdated}</BlogDate>
+        </BlogPost>
       ))}
     </BlogContainer>
   );
