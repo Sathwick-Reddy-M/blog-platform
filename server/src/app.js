@@ -36,4 +36,10 @@ app.post("/users", (req, res) => {
   res.send("Update Successful");
 });
 
+app.get("/users/:userEmail", (req, res) => {
+  const userEmail = req.params.userEmail;
+  const user = USERS.filter((user) => `${user.userEmail}` === userEmail)[0];
+  res.json(user);
+});
+
 module.exports = app;

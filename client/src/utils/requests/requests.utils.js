@@ -55,3 +55,13 @@ export async function createUser(userObj) {
     console.log(error);
   }
 }
+
+export async function getUser(userEmail) {
+  try {
+    const response = await fetch(`http://localhost:8080/users/${userEmail}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

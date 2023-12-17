@@ -6,6 +6,7 @@ import { Author } from "./components/author/author.component";
 import { Navigation } from "./components/navigation/navigation.component";
 import { SignIn } from "./components/sign-in/sign-in.component";
 import { SignUp } from "./components/sign-up/sign-up.component";
+import { Editor } from "./components/editor/editor.component";
 import { useEffect, useState } from "react";
 import { updateCurrentUser } from "../src/utils/firebase/firebase.utils";
 
@@ -36,6 +37,7 @@ function App() {
         ></Route>
         <Route path="/blog/:blogId" element={<Blog></Blog>}></Route>
         <Route path="/author/:authorId" element={<Author></Author>}></Route>
+        <Route path="/editor" element={<Editor></Editor>}></Route>
       </Route>
     </Routes>
   );
