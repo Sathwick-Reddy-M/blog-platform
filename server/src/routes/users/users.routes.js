@@ -1,16 +1,20 @@
-const { USERS } = require("../../models/users.model");
+const {
+  USERS,
+  getUserByEmail,
+  insertUser,
+} = require("../../models/users/users.model");
 const express = require("express");
 const usersRouter = express.Router();
 
-usersRouter.post("/users", (req, res) => {
+usersRouter.post("/users", async (req, res) => {
   const userData = req.body;
-  USERS.push(userData);
+  await insertUser(userData);
   res.send("Update Successful");
 });
 
-usersRouter.get("/users/:userEmail", (req, res) => {
+usersRouter.get("/users/:userEmail", async (req, res) => {
   const userEmail = req.params.userEmail;
-  const user = USERS.filter((user) => `${user.userEmail}` === userEmail)[0];
+  const user = await getUserByEmail(userEmail);
   res.json(user);
 });
 

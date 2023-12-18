@@ -1,14 +1,15 @@
-const { BLOGS } = require("../../models/blogs.model");
+const { getBlogs, getBlog } = require("../../models/blogs/blogs.model");
 const express = require("express");
 const blogsRouter = express.Router();
 
-blogsRouter.get("/blogs", (req, res) => {
-  res.json(BLOGS);
+blogsRouter.get("/blogs", async (req, res) => {
+  const blogs = await getBlogs();
+  res.json(blogs);
 });
 
-blogsRouter.get("/blog/:blogId", (req, res) => {
+blogsRouter.get("/blog/:blogId", async (req, res) => {
   const blogId = req.params.blogId;
-  const blog = BLOGS.filter((blog) => `${blog.id}` === blogId)[0];
+  const blog = await getBlog(blogId);
   res.json(blog);
 });
 

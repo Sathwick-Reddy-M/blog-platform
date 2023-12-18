@@ -26,8 +26,10 @@ export function SignUp({ user, setUser }) {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    await signUpUser(email, password);
-    await createUser({ name, email });
+    await Promise.all([
+      signUpUser(email, password),
+      createUser({ name, userEmail: email }),
+    ]);
     resetFormFields();
     navigate("/");
   };
