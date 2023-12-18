@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   SignInContainer,
   Title,
@@ -16,6 +17,7 @@ import {
 export function SignIn({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const resetFormFields = () => {
     setEmail("");
@@ -27,6 +29,7 @@ export function SignIn({ user, setUser }) {
     signInUser(email, password);
     await updateCurrentUser(setUser);
     resetFormFields();
+    navigate("/");
   };
 
   return user ? (

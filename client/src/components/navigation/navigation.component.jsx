@@ -32,7 +32,7 @@ export function Navigation({ user, setUser }) {
       <NavigationContainer>
         <StyledLink as="span">{userName}</StyledLink>
         <StyledLink to="/">Home</StyledLink>
-        <StyledLink as="span" onClick={handleSignOut}>
+        <StyledLink as="span" to="/" onClick={handleSignOut}>
           Sign Out
         </StyledLink>
       </NavigationContainer>

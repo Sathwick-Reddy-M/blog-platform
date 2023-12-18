@@ -1,6 +1,8 @@
+const SERVER = "http://localhost:8080";
+
 export async function getBlogPosts() {
   try {
-    const response = await fetch("http://localhost:8080/blogs");
+    const response = await fetch(`${SERVER}/blogs`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -10,7 +12,7 @@ export async function getBlogPosts() {
 
 export async function getBlogPost(blogId) {
   try {
-    const response = await fetch(`http://localhost:8080/blog/${blogId}`);
+    const response = await fetch(`${SERVER}/blog/${blogId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -20,7 +22,7 @@ export async function getBlogPost(blogId) {
 
 export async function getAuthorDetails(authorId) {
   try {
-    const response = await fetch(`http://localhost:8080/author/${authorId}`);
+    const response = await fetch(`${SERVER}/author/${authorId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -30,9 +32,7 @@ export async function getAuthorDetails(authorId) {
 
 export async function getAuthorBlogs(authorId) {
   try {
-    const response = await fetch(
-      `http://localhost:8080/authorBlogs/${authorId}`
-    );
+    const response = await fetch(`${SERVER}/authorBlogs/${authorId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -49,7 +49,7 @@ export async function createUser(userObj) {
     body: JSON.stringify(userObj),
   };
   try {
-    const response = await fetch(`http://localhost:8080/users`, options);
+    const response = await fetch(`${SERVER}/users`, options);
     return response;
   } catch (error) {
     console.log(error);
@@ -58,7 +58,7 @@ export async function createUser(userObj) {
 
 export async function getUser(userEmail) {
   try {
-    const response = await fetch(`http://localhost:8080/users/${userEmail}`);
+    const response = await fetch(`${SERVER}/users/${userEmail}`);
     const data = await response.json();
     return data;
   } catch (error) {

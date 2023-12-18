@@ -3,8 +3,11 @@ const mongoose = require("mongoose");
 const app = require("./app");
 const PORT = 8080;
 const server = http.createServer(app);
-const MONGO_URL =
-  "mongodb+srv://sathwick:<YOUR_MONGO_DB_PASSWORD>@mongocluster.mtdtrow.mongodb.net/?retryWrites=true&w=majority";
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+const pwd = process.env.MONGODB_PASSWORD;
+const MONGO_URL = `mongodb+srv://sathwick:${pwd}@mongocluster.mtdtrow.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connection.once("open", () => {
   console.log("MongoDB connection ready!");
