@@ -65,3 +65,49 @@ export async function getUser(userEmail) {
     console.log(error);
   }
 }
+
+export async function getDraft(draftId) {
+  try {
+    const response = await fetch(`${SERVER}/draft/${draftId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getDraftsByAuthor(authorId) {
+  try {
+    const response = await fetch(`${SERVER}/drafts/${authorId}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function createOrUpdateDraft(draftObj) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(draftObj),
+  };
+  try {
+    const response = await fetch(`${SERVER}/draft`, options);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getNewDraftId() {
+  try {
+    const response = await fetch(`${SERVER}/draftsCount`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

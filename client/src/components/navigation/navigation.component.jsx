@@ -5,11 +5,18 @@ import {
   signOutUser,
 } from "../../utils/firebase/firebase.utils";
 import { getUser } from "../../utils/requests/requests.utils";
-import { NavigationContainer, StyledLink } from "./navigation.styles";
+import {
+  NavigationContainer,
+  StyledLink,
+  DropdownContainer,
+  DropdownContent,
+  DropdownLink,
+} from "./navigation.styles";
 
 export function Navigation({ user, setUser }) {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
+  const [authorId, setAuthorId] = useState(null);
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -22,6 +29,7 @@ export function Navigation({ user, setUser }) {
       if (user) {
         const userResponse = await getUser(user.email);
         setUserName(userResponse.name);
+        setAuthorId(userResponse.authorId);
       }
     };
     asyncWrapper();
@@ -30,7 +38,13 @@ export function Navigation({ user, setUser }) {
   return user ? (
     <Fragment>
       <NavigationContainer>
-        <StyledLink as="span">{userName}</StyledLink>
+        <DropdownContainer>
+          <StyledLink as="span">{userName}</StyledLink>
+          <DropdownContent>
+            <DropdownLink to={`/author/${authorId}`}>Blogs</DropdownLink>
+            <DropdownLink to={`/drafts/${authorId}`}>Drafts</DropdownLink>
+          </DropdownContent>
+        </DropdownContainer>
         <StyledLink to="/">Home</StyledLink>
         <StyledLink as="span" to="/" onClick={handleSignOut}>
           Sign Out

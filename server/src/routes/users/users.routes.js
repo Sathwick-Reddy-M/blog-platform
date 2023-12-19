@@ -1,5 +1,4 @@
 const {
-  USERS,
   getUserByEmail,
   insertUser,
 } = require("../../models/users/users.model");

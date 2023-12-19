@@ -9,6 +9,7 @@ import { SignUp } from "./components/sign-up/sign-up.component";
 import { Editor } from "./components/editor/editor.component";
 import { useEffect, useState } from "react";
 import { updateCurrentUser } from "../src/utils/firebase/firebase.utils";
+import { Drafts } from "./components/drafts/drafts.component";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,6 +39,7 @@ function App() {
         <Route path="/blog/:blogId" element={<Blog></Blog>}></Route>
         <Route path="/author/:authorId" element={<Author></Author>}></Route>
         <Route path="/editor" element={<Editor></Editor>}></Route>
+        <Route path="/drafts/:authorId" element={<Drafts></Drafts>}></Route>
       </Route>
     </Routes>
   );
