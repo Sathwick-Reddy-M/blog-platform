@@ -6,8 +6,11 @@ import {
   createOrUpdateDraft,
   getDraft,
   getNewDraftId,
+  deleteDraft,
+  getAuthorDetails,
+  createBlog,
 } from "../../utils/requests/requests.utils";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function Editor() {
   const [value, setValue] = useState("");
@@ -41,11 +44,32 @@ export function Editor() {
     // "video",
   ];
 
-  const publishClickHandler = () => {
+  const resetFields = () => {
+    setValue("");
+    setDraftId(null);
+    setNewDraftValue(true);
+  };
+
+  const publishClickHandler = async () => {
     if (value === "") {
       alert("Nothing to publish");
     } else {
-      console.log(value);
+      const authorRes = await getAuthorDetails(authorId);
+
+      const blogObj = {
+        name: `Blog ${draftId}`,
+        author: `${authorRes.firstName} ${authorRes.lastName}`,
+        authorId: authorId,
+        contentHTML: value,
+        datePublished: new Date(),
+        dateUpdated: new Date(),
+      };
+      const createBlogRes = await createBlog(blogObj);
+      if (draftId) {
+        const response = await deleteDraft(draftId);
+      }
+      alert("Blog Published");
+      resetFields();
     }
   };
 

@@ -15,8 +15,24 @@ async function getBlog(blogId) {
   return blog;
 }
 
+async function getNewBlogId() {
+  const blogs = await blogsDB.find();
+  let maxId = 0;
+  blogs.forEach(({ id }) => (maxId = Math.max(maxId, id)));
+  return maxId + 1;
+}
+
+async function createBlog(blogObj) {
+  const response = await blogsDB.create({
+    id: await getNewBlogId(),
+    ...blogObj,
+  });
+  return response;
+}
+
 module.exports = {
   getAuthorBlogs,
   getBlogs,
   getBlog,
+  createBlog,
 };

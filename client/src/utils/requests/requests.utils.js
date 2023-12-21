@@ -20,6 +20,22 @@ export async function getBlogPost(blogId) {
   }
 }
 
+export async function createBlog(blogObj) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(blogObj),
+  };
+  try {
+    const response = await fetch(`${SERVER}/blog`, options);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getAuthorDetails(authorId) {
   try {
     const response = await fetch(`${SERVER}/author/${authorId}`);
@@ -61,6 +77,17 @@ export async function getUser(userEmail) {
     const response = await fetch(`${SERVER}/users/${userEmail}`);
     const data = await response.json();
     return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteDraft(draftId) {
+  try {
+    const response = await fetch(`${SERVER}/draft/${draftId}`, {
+      method: "DELETE",
+    });
+    return response;
   } catch (error) {
     console.log(error);
   }

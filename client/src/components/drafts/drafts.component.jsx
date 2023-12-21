@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getDraftsByAuthor } from "../../utils/requests/requests.utils";
 import { useEffect, useState } from "react";
 import { DraftCard } from "../draft-card/draft-card.component";
@@ -6,7 +6,6 @@ import { DraftCard } from "../draft-card/draft-card.component";
 export function Drafts() {
   const { authorId } = useParams();
   const [drafts, setDrafts] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const asyncWrapper = async () => {

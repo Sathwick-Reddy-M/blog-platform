@@ -28,9 +28,15 @@ async function createOrUpdateDraft(draftObj) {
   return response;
 }
 
+async function deleteDraft(draftId) {
+  const response = await draftsDb.deleteOne({ id: draftId });
+  return response;
+}
+
 module.exports = {
   getDraft,
   getDraftsByAuthor,
   createOrUpdateDraft,
   getNewDraftId,
+  deleteDraft,
 };
