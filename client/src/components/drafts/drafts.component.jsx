@@ -18,13 +18,34 @@ export function Drafts() {
   return (
     <div>
       <div>
-        <Link to={`/editor`} state={{ authorId: authorId, newDraft: true }}>
+        <Link
+          to={`/editor`}
+          state={{
+            authorId: authorId,
+            newDraft: true,
+            draftIdValue: null,
+            contentValue: false,
+          }}
+        >
           <button>Create a New Draft</button>
         </Link>
       </div>
 
       {drafts.length ? (
-        drafts.map(({ id }) => <DraftCard id={id} key={id}></DraftCard>)
+        drafts.map(({ id, contentHTML }) => (
+          <Link
+            to={"/editor"}
+            state={{
+              authorId: authorId,
+              newDraft: false,
+              draftIdValue: id,
+              contentValue: contentHTML,
+            }}
+            key={id}
+          >
+            <DraftCard id={id}></DraftCard>
+          </Link>
+        ))
       ) : (
         <h1>No Drafts !!!</h1>
       )}

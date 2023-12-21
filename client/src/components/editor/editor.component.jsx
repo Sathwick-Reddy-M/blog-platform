@@ -13,11 +13,11 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function Editor() {
-  const [value, setValue] = useState("");
   const { state } = useLocation();
-  const { authorId, newDraft } = state;
+  const { authorId, newDraft, draftIdValue, contentValue } = state;
+  const [value, setValue] = useState(contentValue || "");
   const [newDraftValue, setNewDraftValue] = useState(newDraft || false);
-  const [draftId, setDraftId] = useState(null);
+  const [draftId, setDraftId] = useState(draftIdValue || null);
 
   const modules = {
     toolbar: [
