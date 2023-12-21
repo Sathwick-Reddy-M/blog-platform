@@ -7,6 +7,7 @@ import {
   BlogAuthor,
   BlogContent,
   BlogDate,
+  BlogLink,
 } from "./blog-card.styles";
 
 export function BlogCard({ blogs }) {
@@ -14,12 +15,12 @@ export function BlogCard({ blogs }) {
     <BlogContainer>
       {blogs.map((blog, index) => (
         <BlogPost key={index}>
-          <Link to={`/blog/${blog.id}`}>
+          <BlogLink to={`/blog/${blog.id}`}>
             <BlogTitle>{blog.name}</BlogTitle>
-          </Link>
-          <Link to={`/author/${blog.authorId}`}>
+          </BlogLink>
+          <BlogLink to={`/author/${blog.authorId}`}>
             <BlogAuthor>Author: {blog.author}</BlogAuthor>
-          </Link>
+          </BlogLink>
           <BlogContent
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(blog.contentHTML),

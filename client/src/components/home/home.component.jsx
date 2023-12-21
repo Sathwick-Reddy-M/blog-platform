@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../../utils/requests/requests.utils";
 import { BlogCard } from "../blog-card/blog-card.component.jsx";
+import { HomeContainer, HomeTitle } from "./home.styles";
 
 export function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -18,9 +19,9 @@ export function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Home</h1>
+    <HomeContainer>
+      <HomeTitle>Home</HomeTitle>
       <BlogCard blogs={blogs} />
-    </div>
+    </HomeContainer>
   );
 }

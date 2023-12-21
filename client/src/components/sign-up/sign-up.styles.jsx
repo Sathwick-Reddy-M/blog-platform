@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export const SignUpContainer = styled.div`
   max-width: 400px;
@@ -44,4 +44,9 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+  &:hover {
+    background-color: #218838; /* Darker shade on hover */
+  }
 `;

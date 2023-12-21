@@ -2,6 +2,14 @@ import { Link, useParams } from "react-router-dom";
 import { getDraftsByAuthor } from "../../utils/requests/requests.utils";
 import { useEffect, useState } from "react";
 import { DraftCard } from "../draft-card/draft-card.component";
+import {
+  Container,
+  NewDraftButton,
+  DraftsContainer,
+  NoDraftsMessage,
+  DraftListLink,
+  StyledLink,
+} from "./drafts.styles";
 
 export function Drafts() {
   const { authorId } = useParams();
@@ -16,9 +24,9 @@ export function Drafts() {
   }, [authorId]);
 
   return (
-    <div>
+    <Container>
       <div>
-        <Link
+        <StyledLink
           to={`/editor`}
           state={{
             authorId: authorId,
@@ -27,28 +35,29 @@ export function Drafts() {
             contentValue: false,
           }}
         >
-          <button>Create a New Draft</button>
-        </Link>
+          <NewDraftButton>Create a New Draft</NewDraftButton>
+        </StyledLink>
       </div>
-
-      {drafts.length ? (
-        drafts.map(({ id, contentHTML }) => (
-          <Link
-            to={"/editor"}
-            state={{
-              authorId: authorId,
-              newDraft: false,
-              draftIdValue: id,
-              contentValue: contentHTML,
-            }}
-            key={id}
-          >
-            <DraftCard id={id}></DraftCard>
-          </Link>
-        ))
-      ) : (
-        <h1>No Drafts !!!</h1>
-      )}
-    </div>
+      <DraftsContainer>
+        {drafts.length ? (
+          drafts.map(({ id, contentHTML }) => (
+            <DraftListLink
+              to={"/editor"}
+              state={{
+                authorId: authorId,
+                newDraft: false,
+                draftIdValue: id,
+                contentValue: contentHTML,
+              }}
+              key={id}
+            >
+              <DraftCard id={id}></DraftCard>
+            </DraftListLink>
+          ))
+        ) : (
+          <NoDraftsMessage>No Drafts !!!</NoDraftsMessage>
+        )}
+      </DraftsContainer>
+    </Container>
   );
 }

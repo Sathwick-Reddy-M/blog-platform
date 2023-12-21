@@ -5,6 +5,11 @@ import {
   getAuthorDetails,
   getAuthorBlogs,
 } from "../../utils/requests/requests.utils";
+import {
+  AuthorDetailsContainer,
+  AuthorInfo,
+  BlogCardContainer,
+} from "./author.styles";
 
 export function Author() {
   const { authorId } = useParams();
@@ -22,11 +27,13 @@ export function Author() {
   }, []);
 
   return (
-    <div>
-      <p>FirstName: {author.firstName}</p>
-      <p>LastName: {author.lastName}</p>
-      <p>UserName: {author.username}</p>
-      <BlogCard blogs={authorBlogs} />
-    </div>
+    <AuthorDetailsContainer>
+      <AuthorInfo>FirstName: {author.firstName}</AuthorInfo>
+      <AuthorInfo>LastName: {author.lastName}</AuthorInfo>
+      <AuthorInfo>UserName: {author.username}</AuthorInfo>
+      <BlogCardContainer>
+        <BlogCard blogs={authorBlogs} />
+      </BlogCardContainer>
+    </AuthorDetailsContainer>
   );
 }

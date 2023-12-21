@@ -14,9 +14,11 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333;
   cursor: pointer;
+  transition: color 0.3s;
 
   &:hover {
     text-decoration: underline;
+    color: #555;
   }
 `;
 
@@ -43,6 +45,7 @@ export const DropdownLink = styled(Link)`
   padding: 10px;
   text-decoration: none;
   color: #333;
+  transition: background-color 0.3s;
 
   &:hover {
     background-color: #f1f1f1;

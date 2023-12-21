@@ -112,8 +112,12 @@ export function Editor() {
         modules={modules}
         formats={formats}
       />
-      <button onClick={saveClickHandler}>Save Draft</button>
-      <button onClick={publishClickHandler}>Publish</button>
+      <div>
+        <button onClick={saveClickHandler}>Save Draft</button>
+      </div>
+      <div>
+        <button onClick={publishClickHandler}>Publish</button>
+      </div>
     </EditorContainer>
   );
 }

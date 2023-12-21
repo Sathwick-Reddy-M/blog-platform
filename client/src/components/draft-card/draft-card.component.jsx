@@ -1,6 +1,7 @@
 import DOMPurify from "dompurify";
 import { getDraft } from "../../utils/requests/requests.utils";
 import { useEffect, useState } from "react";
+import { DraftContainer, DraftTitle, DraftContent } from "./draft-card.styles";
 
 export function DraftCard({ id }) {
   const [draft, setDraft] = useState({ contentHTML: "" });
@@ -12,14 +13,17 @@ export function DraftCard({ id }) {
     asyncWrapper();
   }, []);
 
+  const displayContent = draft.contentHTML.substring(0, 100);
+  const ellipsis = draft.contentHTML.length > 100 ? "<span>...</span>" : "";
+
   return (
-    <div>
-      <h1>Draft {id}</h1>
-      <div
+    <DraftContainer>
+      <DraftTitle>Draft {id}</DraftTitle>
+      <DraftContent
         dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(draft.contentHTML),
+          __html: DOMPurify.sanitize(displayContent + ellipsis),
         }}
-      ></div>
-    </div>
+      ></DraftContent>
+    </DraftContainer>
   );
 }

@@ -44,4 +44,9 @@ export const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+
+  &:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
 `;
