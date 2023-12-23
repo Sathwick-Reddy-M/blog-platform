@@ -6,18 +6,18 @@ const {
 const express = require("express");
 const blogsRouter = express.Router();
 
-blogsRouter.get("/blogs", async (req, res) => {
+blogsRouter.get("/all", async (req, res) => {
   const blogs = await getBlogs();
   res.json(blogs);
 });
 
-blogsRouter.get("/blog/:blogId", async (req, res) => {
+blogsRouter.get("/:blogId", async (req, res) => {
   const blogId = req.params.blogId;
   const blog = await getBlog(blogId);
   res.json(blog);
 });
 
-blogsRouter.post("/blog", async (req, res) => {
+blogsRouter.post("/", async (req, res) => {
   const blogObj = req.body;
   const response = await createBlog(blogObj);
   res.send(response);

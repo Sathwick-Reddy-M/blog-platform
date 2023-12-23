@@ -10,9 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/", blogsRouter);
-app.use("/", authorsRouter);
-app.use("/", usersRouter);
+app.use("/blogs", blogsRouter);
+app.use("/authors", authorsRouter);
+app.use("/users", usersRouter);
 app.use("/", draftsRouter);
 
 module.exports = app;

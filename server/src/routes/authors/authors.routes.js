@@ -4,7 +4,7 @@ const express = require("express");
 
 const authorsRouter = express.Router();
 
-authorsRouter.get("/author/:authorId", async (req, res) => {
+authorsRouter.get("/:authorId", async (req, res) => {
   const authorId = req.params.authorId;
   const author = await getAuthor(authorId);
   res.json(author);

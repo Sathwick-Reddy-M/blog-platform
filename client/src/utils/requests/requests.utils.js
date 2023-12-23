@@ -2,7 +2,7 @@ const SERVER = "http://localhost:8080";
 
 export async function getBlogPosts() {
   try {
-    const response = await fetch(`${SERVER}/blogs`);
+    const response = await fetch(`${SERVER}/blogs/all`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -12,7 +12,7 @@ export async function getBlogPosts() {
 
 export async function getBlogPost(blogId) {
   try {
-    const response = await fetch(`${SERVER}/blog/${blogId}`);
+    const response = await fetch(`${SERVER}/blogs/${blogId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -29,7 +29,7 @@ export async function createBlog(blogObj) {
     body: JSON.stringify(blogObj),
   };
   try {
-    const response = await fetch(`${SERVER}/blog`, options);
+    const response = await fetch(`${SERVER}/blogs/`, options);
     return response;
   } catch (error) {
     console.log(error);
@@ -38,7 +38,7 @@ export async function createBlog(blogObj) {
 
 export async function getAuthorDetails(authorId) {
   try {
-    const response = await fetch(`${SERVER}/author/${authorId}`);
+    const response = await fetch(`${SERVER}/authors/${authorId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -48,7 +48,7 @@ export async function getAuthorDetails(authorId) {
 
 export async function getAuthorBlogs(authorId) {
   try {
-    const response = await fetch(`${SERVER}/authorBlogs/${authorId}`);
+    const response = await fetch(`${SERVER}/authors/authorBlogs/${authorId}`);
     const data = await response.json();
     return data;
   } catch (error) {
