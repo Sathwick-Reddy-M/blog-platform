@@ -6,13 +6,14 @@ const { usersRouter } = require("./routes/users/users.routes");
 const { draftsRouter } = require("./routes/drafts/drafts.routes");
 
 const app = express();
+const API_VERSION = "/api/v1";
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/blogs", blogsRouter);
-app.use("/authors", authorsRouter);
-app.use("/users", usersRouter);
-app.use("/", draftsRouter);
+app.use(`${API_VERSION}/blogs`, blogsRouter);
+app.use(`${API_VERSION}/authors`, authorsRouter);
+app.use(`${API_VERSION}/users`, usersRouter);
+app.use(`${API_VERSION}/drafts`, draftsRouter);
 
 module.exports = app;

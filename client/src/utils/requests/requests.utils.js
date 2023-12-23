@@ -1,4 +1,4 @@
-const SERVER = "http://localhost:8080";
+const SERVER = "http://localhost:8080/api/v1";
 
 export async function getBlogPosts() {
   try {
@@ -84,7 +84,7 @@ export async function getUser(userEmail) {
 
 export async function deleteDraft(draftId) {
   try {
-    const response = await fetch(`${SERVER}/draft/${draftId}`, {
+    const response = await fetch(`${SERVER}/drafts/deleteDraft/${draftId}`, {
       method: "DELETE",
     });
     return response;
@@ -95,7 +95,7 @@ export async function deleteDraft(draftId) {
 
 export async function getDraft(draftId) {
   try {
-    const response = await fetch(`${SERVER}/draft/${draftId}`);
+    const response = await fetch(`${SERVER}/drafts/getDraft/${draftId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -105,7 +105,7 @@ export async function getDraft(draftId) {
 
 export async function getDraftsByAuthor(authorId) {
   try {
-    const response = await fetch(`${SERVER}/drafts/${authorId}`);
+    const response = await fetch(`${SERVER}/drafts/authorDrafts/${authorId}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -122,7 +122,7 @@ export async function createOrUpdateDraft(draftObj) {
     body: JSON.stringify(draftObj),
   };
   try {
-    const response = await fetch(`${SERVER}/draft`, options);
+    const response = await fetch(`${SERVER}/drafts/updateDraft`, options);
     return response;
   } catch (error) {
     console.log(error);
@@ -131,7 +131,7 @@ export async function createOrUpdateDraft(draftObj) {
 
 export async function getNewDraftId() {
   try {
-    const response = await fetch(`${SERVER}/draftsCount`);
+    const response = await fetch(`${SERVER}/drafts/draftsCount`);
     const data = await response.json();
     return data;
   } catch (error) {
