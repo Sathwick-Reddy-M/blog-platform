@@ -26,7 +26,8 @@ draftsRouter.post("/updateDraft", async (req, res) => {
 });
 
 draftsRouter.get("/authorDrafts/:authorId", async (req, res) => {
-  const drafts = await getDraftsByAuthor(req.params.authorId);
+  const query = req.query;
+  const drafts = await getDraftsByAuthor(req.params.authorId, query);
   res.json(drafts);
 });
 

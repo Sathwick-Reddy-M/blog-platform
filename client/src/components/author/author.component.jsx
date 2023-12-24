@@ -15,16 +15,39 @@ export function Author() {
   const { authorId } = useParams();
   const [author, setAuthor] = useState({});
   const [authorBlogs, setAuthorBlogs] = useState([]);
+  const [page, setPage] = useState(1);
+  const [end, setEnd] = useState(false);
+
+  const fetchAuthorBlogs = async () => {
+    if (end) {
+      alert("No more blogs to fetch");
+      return;
+    }
+    try {
+      const resAuthorBlogs = await getAuthorBlogs(authorId, page);
+      setAuthorBlogs([...authorBlogs, ...resAuthorBlogs]);
+      setPage(page + 1);
+      if (resAuthorBlogs.length === 0) {
+        alert("No more blogs to fetch");
+        setEnd(true);
+      }
+    } catch (error) {
+      console.error("Error fetching author blogs:", error);
+    }
+  };
 
   useEffect(() => {
-    async function getAuthorsAsyncWrapper() {
+    const getAuthorsAsyncWrapper = async () => {
       const resAuthor = await getAuthorDetails(authorId);
-      const resAuthorBlogs = await getAuthorBlogs(authorId);
       setAuthor(resAuthor);
-      setAuthorBlogs(resAuthorBlogs);
-    }
+      await fetchAuthorBlogs();
+    };
     getAuthorsAsyncWrapper();
-  }, []);
+  }, [authorId]);
+
+  const handleLoadMore = () => {
+    fetchAuthorBlogs();
+  };
 
   return (
     <AuthorDetailsContainer>
@@ -34,6 +57,9 @@ export function Author() {
       <BlogCardContainer>
         <BlogCard blogs={authorBlogs} />
       </BlogCardContainer>
+      {authorBlogs.length > 0 && (
+        <button onClick={handleLoadMore}>Load More</button>
+      )}
     </AuthorDetailsContainer>
   );
 }

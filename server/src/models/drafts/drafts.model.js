@@ -1,3 +1,4 @@
+const { getPagination } = require("../../utils/query");
 const draftsDb = require("./drafts.mongo");
 
 async function getDraft(draftId) {
@@ -5,8 +6,12 @@ async function getDraft(draftId) {
   return draft;
 }
 
-async function getDraftsByAuthor(authorId) {
-  const drafts = await draftsDb.find({ authorId: authorId });
+async function getDraftsByAuthor(authorId, query) {
+  const { skip, limit } = getPagination(query);
+  const drafts = await draftsDb
+    .find({ authorId: authorId })
+    .skip(skip)
+    .limit(limit);
   return drafts;
 }
 

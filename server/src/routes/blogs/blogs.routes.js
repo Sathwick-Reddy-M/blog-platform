@@ -7,7 +7,7 @@ const express = require("express");
 const blogsRouter = express.Router();
 
 blogsRouter.get("/all", async (req, res) => {
-  const blogs = await getBlogs();
+  const blogs = await getBlogs(req.query);
   res.json(blogs);
 });
 

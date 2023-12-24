@@ -1,12 +1,18 @@
 const blogsDB = require("./blogs.mongo");
+const { getPagination } = require("../../utils/query");
 
-async function getAuthorBlogs(authorId) {
-  const blogs = await blogsDB.find({ authorId: authorId });
+async function getAuthorBlogs(authorId, query) {
+  const { skip, limit } = getPagination(query);
+  const blogs = await blogsDB
+    .find({ authorId: authorId })
+    .skip(skip)
+    .limit(limit);
   return blogs;
 }
 
-async function getBlogs() {
-  const blogs = await blogsDB.find({});
+async function getBlogs(query) {
+  const { skip, limit } = getPagination(query);
+  const blogs = await blogsDB.find({}).skip(skip).limit(limit);
   return blogs;
 }
 

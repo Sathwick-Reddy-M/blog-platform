@@ -100,6 +100,7 @@ export function Editor() {
         };
         await createOrUpdateDraft(draftObj);
       }
+      alert("Draft Saved");
     }
   };
 

@@ -1,8 +1,8 @@
 const SERVER = "http://localhost:8080/api/v1";
 
-export async function getBlogPosts() {
+export async function getBlogPosts(page) {
   try {
-    const response = await fetch(`${SERVER}/blogs/all`);
+    const response = await fetch(`${SERVER}/blogs/all?page=${page}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -46,9 +46,11 @@ export async function getAuthorDetails(authorId) {
   }
 }
 
-export async function getAuthorBlogs(authorId) {
+export async function getAuthorBlogs(authorId, page) {
   try {
-    const response = await fetch(`${SERVER}/authors/authorBlogs/${authorId}`);
+    const response = await fetch(
+      `${SERVER}/authors/authorBlogs/${authorId}?page=${page}`
+    );
     const data = await response.json();
     return data;
   } catch (error) {
@@ -103,9 +105,11 @@ export async function getDraft(draftId) {
   }
 }
 
-export async function getDraftsByAuthor(authorId) {
+export async function getDraftsByAuthor(authorId, page) {
   try {
-    const response = await fetch(`${SERVER}/drafts/authorDrafts/${authorId}`);
+    const response = await fetch(
+      `${SERVER}/drafts/authorDrafts/${authorId}?page=${page}`
+    );
     const data = await response.json();
     return data;
   } catch (error) {

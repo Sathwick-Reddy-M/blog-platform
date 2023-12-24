@@ -14,14 +14,37 @@ import {
 export function Drafts() {
   const { authorId } = useParams();
   const [drafts, setDrafts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [end, setEnd] = useState(false);
+
+  const fetchDrafts = async () => {
+    if (end) {
+      alert("No more drafts to fetch");
+      return;
+    }
+    try {
+      const resDrafts = await getDraftsByAuthor(authorId, page);
+      setDrafts([...drafts, ...resDrafts]);
+      setPage(page + 1);
+      if (resDrafts.length === 0) {
+        setEnd(true);
+        alert("No more drafts to fetch");
+      }
+    } catch (error) {
+      console.error("Error fetching drafts:", error);
+    }
+  };
 
   useEffect(() => {
     const asyncWrapper = async () => {
-      const resDrafts = await getDraftsByAuthor(authorId);
-      setDrafts(resDrafts);
+      await fetchDrafts();
     };
     asyncWrapper();
   }, [authorId]);
+
+  const handleLoadMore = () => {
+    fetchDrafts();
+  };
 
   return (
     <Container>
@@ -58,6 +81,7 @@ export function Drafts() {
           <NoDraftsMessage>No Drafts !!!</NoDraftsMessage>
         )}
       </DraftsContainer>
+      {drafts.length > 0 && <button onClick={handleLoadMore}>Load More</button>}
     </Container>
   );
 }

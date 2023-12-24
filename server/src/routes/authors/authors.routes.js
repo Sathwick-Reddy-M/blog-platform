@@ -12,7 +12,8 @@ authorsRouter.get("/:authorId", async (req, res) => {
 
 authorsRouter.get("/authorBlogs/:authorId", async (req, res) => {
   const authorId = req.params.authorId;
-  const blogs = await getAuthorBlogs(authorId);
+  const query = req.query;
+  const blogs = await getAuthorBlogs(authorId, query);
   res.json(blogs);
 });
 
