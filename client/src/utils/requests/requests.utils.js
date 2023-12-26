@@ -1,4 +1,4 @@
-const SERVER = "http://localhost:8080/api/v1";
+const SERVER = "https://blog-platform-q401.onrender.com/api/v1";
 
 export async function getBlogPosts(page) {
   try {

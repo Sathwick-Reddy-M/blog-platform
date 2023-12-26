@@ -4,6 +4,8 @@
 
 The Blog Platform is a full stack web application, featuring a React based frontend for intuitive blog creation, editing, and publishing. With seamless Firebase Authentication, it ensures secure user interactions.MongoDB stores author details, blogs, and drafts. The backend, powered by Express.js, provides RESTful APIs for data retrieval with the help of MongoDB database.
 
+Checkout the app [here](https://sathwick-blog-platform.netlify.app/).
+
 ## Features
 
 - **Blog Management:**
