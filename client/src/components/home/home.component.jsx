@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../../utils/requests/requests.utils";
 import { BlogCard } from "../blog-card/blog-card.component.jsx";
-import { HomeContainer, HomeTitle } from "./home.styles";
+import { HomeContainer, HomeTitle, LoadMoreButton } from "./home.styles";
 
 export function Home() {
   const [blogs, setBlogs] = useState([]);
@@ -27,6 +27,13 @@ export function Home() {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem("alertShown")) {
+      alert(
+        "Please refresh the page if it's blank, as the backend is hosted on Render and may stop if there are no requests. Subsequent requests may require a server reinstallation (which may take up to 1 min)."
+      );
+
+      localStorage.setItem("alertShown", true);
+    }
     fetchBlogs();
   }, []);
 
@@ -38,7 +45,7 @@ export function Home() {
     <HomeContainer>
       <HomeTitle>Home</HomeTitle>
       <BlogCard blogs={blogs} />
-      <button onClick={handleLoadMore}>Load More</button>
+      <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
     </HomeContainer>
   );
 }

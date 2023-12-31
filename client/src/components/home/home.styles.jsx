@@ -12,3 +12,18 @@ export const HomeTitle = styled.h1`
   margin-bottom: 20px;
   text-align: center;
 `;
+
+export const LoadMoreButton = styled.button`
+  background-color: #4caf50;
+  color: #fff;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #45a049;
+  }
+`;

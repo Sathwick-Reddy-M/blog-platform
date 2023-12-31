@@ -22,7 +22,6 @@ const auth = getAuth();
 export async function signUpUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
-      console.log("User SignUp Successful");
       return userCredential;
     })
     .catch((error) => {

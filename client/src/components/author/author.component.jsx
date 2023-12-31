@@ -10,6 +10,7 @@ import {
   AuthorInfo,
   BlogCardContainer,
 } from "./author.styles";
+import { LoadMoreButton } from "../home/home.styles";
 
 export function Author() {
   const { authorId } = useParams();
@@ -58,7 +59,7 @@ export function Author() {
         <BlogCard blogs={authorBlogs} />
       </BlogCardContainer>
       {authorBlogs.length > 0 && (
-        <button onClick={handleLoadMore}>Load More</button>
+        <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
       )}
     </AuthorDetailsContainer>
   );

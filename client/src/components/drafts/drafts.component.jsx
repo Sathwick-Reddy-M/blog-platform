@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { getDraftsByAuthor } from "../../utils/requests/requests.utils";
 import { useEffect, useState } from "react";
 import { DraftCard } from "../draft-card/draft-card.component";
+import { LoadMoreButton } from "../home/home.styles";
 import {
   Container,
   NewDraftButton,
@@ -81,7 +82,9 @@ export function Drafts() {
           <NoDraftsMessage>No Drafts !!!</NoDraftsMessage>
         )}
       </DraftsContainer>
-      {drafts.length > 0 && <button onClick={handleLoadMore}>Load More</button>}
+      {drafts.length > 0 && (
+        <LoadMoreButton onClick={handleLoadMore}>Load More</LoadMoreButton>
+      )}
     </Container>
   );
 }
